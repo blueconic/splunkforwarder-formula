@@ -1,5 +1,5 @@
 [deployment-client]
-clientName = {{ splunkforwarder.deploymentserver['client_name'] }}
+clientName = {{ grains['id'] }}
 
 [target-broker:deploymentServer]
 targetUri = {{ splunkforwarder.deploymentserver['deployment'] }}
