@@ -7,11 +7,6 @@
 {%- from tplroot ~ "/map.jinja" import mapdata as splunkforwarder with context %}
 {%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
 
-splunkforwarder_group:
-    group.present:
-        - name: group
-        - gid: 4005
-
 splunkforwarder_user:
   user.present:
     - name: splunk
@@ -21,6 +16,4 @@ splunkforwarder_user:
     - usergroup: splunk
     - groups:
       - splunk
-    - require:
-      - group: splunkforwarder_group
 
