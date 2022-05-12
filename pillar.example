@@ -13,12 +13,8 @@ splunkforwarder:
     name: splunkforwarder
     version: 8.2.6
 
-    # If set the 'tar' above define the tar download path here
-    tarurl: >-
-      'https://download.splunk.com/products/universalforwarder/releases/8.2.6/linux/splunkforwarder-8.2.6-a6fe1ee8894b-Linux-x86_64.tgz'
-
   # Systemd or initd OS
-  boottype: 'initd'
+  boottype: 'systemd'
 
   # SplunkForwarder directory ownership and runas user
   user: splunk
@@ -29,16 +25,34 @@ splunkforwarder:
   # Configure a local user. Creates user and group defined above.
   # This should not be needed as the splunkforwarder install now configures this.
   createlocaluser: 'false'
-  # Groups user belongs to
-  additionalgroups: []
-  #  - loggroup
-
 
   # Configure Certs
   configcerts: 'false'
-  self_cert_filename: selfsignedcert.pem
-  certs:
-    cacert.pem:
-      content: put your cert content here
-    selfsignedcert.pem:
-      content: put your cert content here
+  #self_cert_filename: selfsignedcert.pem
+  #certs:
+  #  cacert.pem:
+  #    content: put your cert content here
+  #  selfsignedcert.pem:
+  #    content: put your cert content here
+
+  # Configure indexer discovery
+  indexer_discovery:
+    enabled: 'true'
+    defaultgroup: 'target_group1'
+    groups:
+      target_group1:
+        name: 'splunk-cm-<Region>-001'
+        master_uri: 'splunk-cm-<Region>-001.infra.blueconic.net:8089'
+        pass4SymmKey: 'changeme'
+        useACK: 'true'
+        autoLBFrequency: 40
+        forceTimebasedAutoLB: 'true'
+        ssl: 'false'
+        clientCert: '<path to  client certificate>'
+        sslPassword: '<CAcert password>'
+
+  # Splunk Deployment Server. Configures deploymentclient.conf
+  deploymentserver:
+    enabled: 'true'
+    client_name: '<Client Name>'
+    deployment: 'splunk-ds-001.infra.blueconic.net:8089'
