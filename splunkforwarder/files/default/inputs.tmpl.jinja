@@ -1,4 +1,6 @@
 {%- for group, args in splunkforwarder.inputs['monitor'].items() %}
+[default]
+host = {{ grains['id'] }}.infra.blueconic.net
 
 [monitor:://{{ args.monitor }}]
 {% for n, v in args.items()|sort -%}
