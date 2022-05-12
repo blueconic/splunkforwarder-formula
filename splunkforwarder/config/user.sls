@@ -7,13 +7,25 @@
 {%- from tplroot ~ "/map.jinja" import mapdata as splunkforwarder with context %}
 {%- from tplroot ~ "/libtofs.jinja" import files_switch with context %}
 
+splunkforwarder_group:
+  group.present:
+    - name: {{ splunkforwarder.group }}
+    - gid: {{ splunkforwarder.group_id }}
+
 splunkforwarder_user:
   user.present:
-    - name: splunk
-    - uid: 4005
-    - gid: 4005
+    - name: {{ splunkforwarder.user }}
+    - uid: {{ splunkforwarder.user_id }}
+    - allow_uid_change: True
+    - gid: {{ splunkforwarder.group_id }}
+    - allow_gid_change: True
     - home: /opt/splunkforwarder
-    - usergroup: splunk
+    - usergroup: {{ splunkforwarder.group }}
+    - remove_groups: True
     - groups:
-      - splunk
-
+      - {{ splunkforwarder.group }}
+      {% for group in splunkforwarder.additionalgroups -%}
+      - {{ group }}
+      {%- endfor %}
+    - require:
+        - group: splunkforwarder_group

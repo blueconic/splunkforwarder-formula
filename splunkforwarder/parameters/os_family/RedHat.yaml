@@ -11,5 +11,8 @@
 # you can remove this file or provide at least an empty dict, e.g.
 # values: {}
 ---
-values: {}
-...
+values:
+  pkg:
+    # If set to url in defaults.yaml define the .rpm file URL here
+    url: >-
+      'https://download.splunk.com/products/universalforwarder/releases/8.2.6/linux/splunkforwarder-8.2.6-a6fe1ee8894b-linux-2.6-x86_64.rpm'

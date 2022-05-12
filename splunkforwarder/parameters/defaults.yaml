@@ -18,11 +18,13 @@ values:
       'https://download.splunk.com/products/universalforwarder/releases/8.2.6/linux/splunkforwarder-8.2.6-a6fe1ee8894b-Linux-x86_64.tgz'
 
   # Systemd or initd OS
-  boottype: 'systemd'
+  boottype: 'initd'
 
   # SplunkForwarder directory ownership and runas user
   user: splunk
+  user_id: 4005
   group: splunk
+  group_id: 4005
 
   # Set Splunk Admin Password. You should generate a new hash
   # and set this to secure your forwarders.
@@ -35,8 +37,8 @@ values:
   # This should not be needed as the splunkforwarder install now configures this.
   createlocaluser: 'false'
   # Groups user belongs to
-  additionalgroups:
-    - loggroup
+  additionalgroups: []
+#    - loggroup
 
 
   # Configure Certs
