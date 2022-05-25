@@ -70,7 +70,7 @@ splunkforwarder-adminpass-file-file-managed:
                               lookup='splunkforwarder-adminpass-file-file-managed'
                  )
               }}
-    - mode: 644
+    - mode: '0644'
     - user: {{ splunkforwarder.user }}
     - group: {{ splunkforwarder.group }}
     - makedirs: True
@@ -89,7 +89,7 @@ splunkforwarder-deploymentclient-file-file-managed:
                               lookup='splunkforwarder-deploymentclient-file-file-managed'
                  )
               }}
-    - mode: 644
+    - mode: '0644'
     - user: {{ splunkforwarder.user }}
     - group: {{ splunkforwarder.group }}
     - makedirs: True
@@ -108,7 +108,7 @@ splunkforwarder-peers-file-file-managed:
                               lookup='splunkforwarder-peers-file-file-managed'
                  )
               }}
-    - mode: 644
+    - mode: '0644'
     - user: {{ splunkforwarder.user }}
     - group: {{ splunkforwarder.group }}
     - makedirs: True
@@ -127,7 +127,7 @@ splunkforwarder-indexerdiscovery-file-file-managed:
                               lookup='splunkforwarder-indexerdiscovery-file-file-managed'
                  )
               }}
-    - mode: 644
+    - mode: '0644'
     - user: {{ splunkforwarder.user }}
     - group: {{ splunkforwarder.group }}
     - makedirs: True
@@ -146,7 +146,7 @@ splunkforwarder-inputs-file-file-managed:
                               lookup='splunkforwarder-inputs-file-file-managed'
                  )
               }}
-    - mode: 644
+    - mode: '0644'
     - user: {{ splunkforwarder.user }}
     - group: {{ splunkforwarder.group }}
     - makedirs: True

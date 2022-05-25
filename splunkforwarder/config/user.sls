@@ -22,6 +22,7 @@ splunkforwarder_user:
     - home: /opt/splunkforwarder
     - usergroup: {{ splunkforwarder.group }}
     - remove_groups: True
+    - shellL: /sbin/nologin
     - groups:
       - {{ splunkforwarder.group }}
       {% for group in splunkforwarder.additionalgroups -%}
@@ -29,3 +30,11 @@ splunkforwarder_user:
       {%- endfor %}
     - require:
         - group: splunkforwarder_group
+
+splunkforwarder_home_dir:
+  file.directory:
+      - name: /opt/splunkforwarder
+      - user: splunk
+      - group: splunk
+      - dir_mode: 750
+      - file_mode: 644
