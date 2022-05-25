@@ -35,7 +35,7 @@ values:
 
   # Configure a local user. Creates user and group defined above.
   # This should not be needed as the splunkforwarder install now configures this.
-  createlocaluser: 'false'
+  createlocaluser: 'true'
   # Groups user belongs to
   additionalgroups: []
 #    - loggroup
@@ -90,17 +90,10 @@ values:
   # Splunk Deployment Server. Configures deploymentclient.conf
   deploymentserver:
     enabled: 'true'
+    client_name: grains['id']
     deployment: 'splunk-ds-001.infra.blueconic.net:8089'
 
   # Inputs Monitoring
   inputs:
-    enabled: 'false'
-    monitor:
-      nginx-access-log:
-        monitor: /var/log/nginx/access.log
-        index: search
-        sourcetype: nginx_access_log
-      nginx-error-log:
-        monitor: /var/log/nginx/error.log
-        index: search
-        sourcetype: nginx_error_log
+    enabled: 'true'
+    monitor: []
